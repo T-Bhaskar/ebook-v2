@@ -499,10 +499,10 @@ input[type="checkbox"] {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: #000;
-    z-index: 1000;
+    z-index: 9999;
     display: none;
 }
 
@@ -776,6 +776,30 @@ input[type="checkbox"] {
 
 /* Mobile devices (480px and below) */
 @media (max-width: 480px) {
+    /* Hide reader container when PDF fullscreen is active */
+    .pdf-fullscreen-mode.active ~ .reader-container {
+        display: none;
+    }
+    
+    /* Ensure PDF fullscreen covers entire viewport */
+    .pdf-fullscreen-mode {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #000;
+        z-index: 99999;
+    }
+    
+    .pdf-fullscreen-content {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    
     .reader-header {
         padding: 8px;
         flex-direction: column;

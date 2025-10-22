@@ -531,6 +531,12 @@ class EbookReader {
         this.isPdfFullscreen = true;
         this.pdfFullscreenMode.classList.add('active');
         
+        // Lock body scroll on mobile
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+        document.body.style.height = '100%';
+        
         // Update page info
         this.pdfFullscreenPageNum.textContent = this.currentPageNum;
         this.pdfFullscreenTotalPages.textContent = this.totalPages;
@@ -549,13 +555,19 @@ class EbookReader {
             await this.pdfFullscreenMode.requestFullscreen();
         } catch (err) {
             console.log('Fullscreen request failed:', err);
+            // On mobile, browser fullscreen might not work, but our CSS fullscreen will
         }
     }
 
     exitPdfFullscreen() {
         this.isPdfFullscreen = false;
         this.pdfFullscreenMode.classList.remove('active');
-        this.pdfFullscreenContent.innerHTML = '';
+        
+        // Unlock body scroll
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.height = '';
         
         // Reset button text
         this.pdfFullscreenBtn.innerHTML = '<i class="fas fa-expand-arrows-alt"></i> PDF Fullscreen';
