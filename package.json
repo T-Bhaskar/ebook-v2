@@ -1,0 +1,52 @@
+{
+  "name": "epaper-ebook-reader",
+  "version": "1.0.0",
+  "description": "E-Paper Ebook Reader - A beautiful PDF reader with customizable themes",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win",
+    "build:dir": "electron-builder --win --dir"
+  },
+  "keywords": [
+    "ebook",
+    "pdf",
+    "reader",
+    "epaper"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4"
+  },
+  "build": {
+    "appId": "com.ebook.reader",
+    "productName": "E-Paper Ebook Reader",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "files": [
+      "**/*",
+      "!node_modules/**/*",
+      "node_modules/pdfjs-dist/**/*"
+    ],
+    "directories": {
+      "output": "dist"
+    }
+  }
+}
